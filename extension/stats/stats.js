@@ -4,6 +4,10 @@
 
 import { getUsage, dayKey } from "../core/store.js";
 import { getStreakStats } from "../features/streak.js";
+import { siteUrl } from "../core/site.js";
+
+// point "About TabLens" links at localhost when unpacked, prod once published
+document.querySelectorAll(".js-about").forEach((a) => { a.href = siteUrl(); });
 
 const $ = (id) => document.getElementById(id);
 const fmt = (s) => { const m = Math.round(s / 60); return m < 60 ? `${m}m` : `${Math.floor(m / 60)}h ${m % 60}m`; };

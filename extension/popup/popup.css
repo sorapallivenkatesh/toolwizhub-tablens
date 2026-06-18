@@ -84,6 +84,10 @@ body {
   border-top: 1px solid var(--line); padding-top: 13px; margin-top: 2px;
 }
 .foot__status { display: flex; align-items: center; gap: 7px; color: var(--faint); font-size: 11px; }
+.foot__links { display: flex; align-items: center; gap: 9px; font-size: 11px; }
+.foot__links a { color: var(--accent2); text-decoration: none; }
+.foot__links a:hover { text-decoration: underline; }
+.foot__sep { color: var(--muted); opacity: .5; }
 .foot__dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; box-shadow: 0 0 6px #34d399; }
 .foot__brand { display: block; opacity: .85; transition: opacity .15s; }
 .foot__brand:hover { opacity: 1; }

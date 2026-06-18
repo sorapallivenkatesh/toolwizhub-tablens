@@ -2,7 +2,12 @@
    (usage + streak + flags + watches) and renders today's top sites and any
    changed pages. No data lives here; it's all from the shared store. */
 
+import { siteUrl } from "../core/site.js";
+
 const $ = (id) => document.getElementById(id);
+
+// point "About TabLens" links at localhost when unpacked, prod once published
+document.querySelectorAll(".js-about").forEach((a) => { a.href = siteUrl(); });
 
 function fmt(secs) {
   const m = Math.round(secs / 60);

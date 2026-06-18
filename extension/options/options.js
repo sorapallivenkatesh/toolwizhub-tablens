@@ -4,6 +4,10 @@
    last one off revokes the grant again, so the default footprint stays minimal. */
 
 import { getFlags, setFlags, PAGE_FEATURES, getWatches, setWatches } from "../core/store.js";
+import { siteUrl } from "../core/site.js";
+
+// point "About TabLens" links at localhost when unpacked, prod once published
+document.querySelectorAll(".js-about").forEach((a) => { a.href = siteUrl(); });
 
 const HOST = { origins: ["<all_urls>"] };
 const perm = document.getElementById("perm");
