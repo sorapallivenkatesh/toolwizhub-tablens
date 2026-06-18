@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TabLens — Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <header class="top">
+    <img src="../icons/48.png" width="28" height="28" alt="" />
+    <h1>TabLens <span>settings</span></h1>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>Features</h2>
+      <p class="muted">Turn each feature on or off. The three page features need permission to run on the sites you visit — you'll be asked once.</p>
+
+      <ul class="feats">
+        <li class="feat" data-key="usage">
+          <div><h3>⏱ Site usage timer</h3><p>Tracks how long you actively spend on each site.</p></div>
+          <label class="sw"><input type="checkbox" data-flag="usage" /><span></span></label>
+        </li>
+        <li class="feat" data-key="streak">
+          <div><h3>🔥 Streak dashboard</h3><p>Counts consecutive days you've browsed. Shown in the popup.</p></div>
+          <label class="sw"><input type="checkbox" data-flag="streak" /><span></span></label>
+        </li>
+
+        <li class="tier">Page features <span>— need access to the sites you visit</span></li>
+
+        <li class="feat" data-key="scroll">
+          <div><h3>📍 Scroll position memory</h3><p>Returns you to where you left off when you revisit a page.</p></div>
+          <label class="sw"><input type="checkbox" data-flag="scroll" /><span></span></label>
+        </li>
+        <li class="feat" data-key="notes">
+          <div><h3>🗒 Sticky notes</h3><p>Pin draggable notes onto any page; they reappear on return.</p></div>
+          <label class="sw"><input type="checkbox" data-flag="notes" /><span></span></label>
+        </li>
+        <li class="feat" data-key="diff">
+          <div><h3>🔔 Page diff monitor</h3><p>Watches chosen pages and alerts you when their content changes.</p></div>
+          <label class="sw"><input type="checkbox" data-flag="diff" /><span></span></label>
+        </li>
+      </ul>
+      <p id="perm" class="perm"></p>
+    </section>
+
+    <section class="card" id="watch-card">
+      <h2>Watched pages <span class="muted">(page diff monitor)</span></h2>
+      <p class="muted">URLs checked every 30 minutes for content changes.</p>
+      <div class="add">
+        <input id="watch-url" type="url" placeholder="https://example.com/page" autocomplete="off" spellcheck="false" />
+        <button id="watch-add" class="btn">Add</button>
+      </div>
+      <p id="watch-err" class="err"></p>
+      <ul id="watch-list" class="list"></ul>
+      <button id="check-now" class="btn btn--ghost">Check all now</button>
+    </section>
+
+    <p class="foot">TabLens runs 100% locally — all timers, notes, and history stay in your browser.</p>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

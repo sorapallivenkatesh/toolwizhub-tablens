@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+.vscode/
+*.log
+
+# deps (none, but just in case)
+node_modules/
+
+# Claude / local
+.claude/
+CLAUDE.md
+
+# packaging output
+*.zip
+dist/
+web-ext-artifacts/

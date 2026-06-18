@@ -1,0 +1,11 @@
+{
+  "name": "toolwizhub-tablens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "TabLens — your lens on every tab: site usage timer, scroll memory, sticky notes, page-diff monitor, and a daily streak. Runs 100% locally.",
+  "scripts": {
+    "site": "python3 -m http.server 8091 --directory site",
+    "pack": "cd extension && zip -r -X ../tablens-extension.zip . -x '.*' -x '*/.*'"
+  }
+}

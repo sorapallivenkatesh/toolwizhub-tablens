@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TabLens</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="top">
+    <img src="../icons/48.png" width="22" height="22" alt="" />
+    <h1>TabLens</h1>
+    <button id="opts" class="icon-btn" title="Settings">⚙</button>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat__num" id="streak">–</div>
+      <div class="stat__lbl">day streak</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num" id="today">–</div>
+      <div class="stat__lbl">today</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Top sites today</h2>
+    <ul id="sites" class="sites"><li class="empty">No browsing tracked yet.</li></ul>
+  </section>
+
+  <section class="block" id="changes-block" hidden>
+    <h2>Pages that changed</h2>
+    <ul id="changes" class="changes"></ul>
+  </section>
+
+  <footer class="foot">
+    <span>Runs 100% locally</span>
+    <a href="#" id="opts2">Settings</a>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* popup.css — dark glass, indigo accent. Matches the TabLens brand. */
+:root {
+  --bg: #0b0b14; --panel: #14141f; --line: #26263a;
+  --text: #e9e9f3; --muted: #9a9ab0; --accent: #6366f1; --accent2: #22d3ee;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  width: 320px; background: var(--bg); color: var(--text);
+  font: 13px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; padding: 12px;
+}
+.top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.top h1 { font-size: 15px; font-weight: 700; flex: 1; letter-spacing: .2px; }
+.icon-btn { background: transparent; border: none; color: var(--muted); font-size: 16px; cursor: pointer; }
+.icon-btn:hover { color: var(--text); }
+
+.stats { display: flex; gap: 8px; margin-bottom: 12px; }
+.stat { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
+.stat__num { font-size: 24px; font-weight: 700; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat__lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin-top: 2px; }
+
+.block { margin-bottom: 12px; }
+.block h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 6px; }
+
+.sites, .changes { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.site { display: flex; align-items: center; gap: 8px; }
+.site__d { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.site__bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.site__t { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 48px; text-align: right; }
+.empty { color: var(--muted); font-style: italic; }
+
+.changes li { display: flex; justify-content: space-between; gap: 8px; }
+.changes a { color: var(--accent2); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.foot { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 8px; color: var(--muted); font-size: 11px; }
+.foot a { color: var(--accent); text-decoration: none; }

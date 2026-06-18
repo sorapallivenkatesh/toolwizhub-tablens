@@ -1,0 +1,7 @@
+{
+  "name": "tablens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "TabLens MV3 extension — usage timer, scroll memory, sticky notes, page-diff monitor, daily streak. 100% local."
+}
