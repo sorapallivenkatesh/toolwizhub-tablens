@@ -40,6 +40,7 @@ npm run pack    # zip extension/ → tablens-extension.zip for the Web Store
 
 Load unpacked: `chrome://extensions` → Developer mode → **Load unpacked** → pick `extension/`.
 
-> Icons are placeholders copied from NetLens — swap in a TabLens mark before publishing.
+> Extension icons (`extension/icons/`) use the gold-wizard TabLens mark. Site art
+> (`site/assets/`) is still placeholder — swap in branded WebP before publishing.
 
 Part of [ToolWizHub](https://toolwizhub.com).
