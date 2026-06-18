@@ -7,17 +7,19 @@
 </head>
 <body>
   <header class="top">
-    <img src="../icons/48.png" width="22" height="22" alt="" />
+    <img class="top__logo" src="../icons/48.png" width="28" height="28" alt="" />
     <h1>TabLens</h1>
-    <button id="opts" class="icon-btn" title="Settings">⚙</button>
+    <button id="opts" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
   </header>
 
   <section class="stats">
     <div class="stat">
+      <span class="stat__ic">🔥</span>
       <div class="stat__num" id="streak">–</div>
       <div class="stat__lbl">day streak</div>
     </div>
     <div class="stat">
+      <span class="stat__ic">⏱️</span>
       <div class="stat__num" id="today">–</div>
       <div class="stat__lbl">today</div>
     </div>
@@ -34,8 +36,10 @@
   </section>
 
   <footer class="foot">
-    <span>Runs 100% locally</span>
-    <a href="#" id="opts2">Settings</a>
+    <div class="foot__status"><span class="foot__dot"></span> Runs 100% locally — nothing leaves your browser</div>
+    <a class="foot__brand" href="https://toolwizhub.com" target="_blank" rel="noopener" title="ToolWizHub">
+      <img src="../assets/toolwizhub-logo.webp" alt="ToolWizHub" width="150" />
+    </a>
   </footer>
 
   <script type="module" src="popup.js"></script>
