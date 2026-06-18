@@ -7,7 +7,7 @@ uploaded.
 | Feature | What it does | Needs page access? |
 | --- | --- | --- |
 | ⏱ Site usage timer | Active time spent per site, per day | No |
-| 🔥 Streak dashboard | Consecutive days you've browsed | No |
+| 🔥 Streak dashboard | Daily streak + a full stats page: calendar heatmap, time-per-day, top sites | No |
 | 📍 Scroll position memory | Returns you to where you left off | Yes |
 | 🗒 Sticky notes | Draggable notes pinned to any page | Yes |
 | 🔔 Page diff monitor | Alerts when a watched page's content changes | Yes |
@@ -26,7 +26,8 @@ extension/   the MV3 extension (Chrome/Edge)
   features/streak.js   streak aggregator       (Tier 1)
   features/diff.js     page diff monitor       (Tier 2)
   content/page.js      scroll memory + notes   (Tier 2)
-  popup/               the dashboard
+  popup/               the at-a-glance dashboard
+  stats/               full stats page — heatmap, per-day, top sites
   options/             feature toggles + watched pages
 site/        the landing page → tablens.toolwizhub.com
 ```

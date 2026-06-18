@@ -47,4 +47,12 @@ body { background: var(--bg); color: var(--text); font: 14px/1.6 system-ui, -app
 .rm { background: transparent; border: none; color: var(--err); cursor: pointer; }
 .empty { color: var(--muted); font-style: italic; justify-content: center; }
 
-.foot { text-align: center; color: var(--muted); font-size: 12.5px; }
+.foot { display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; padding-top: 6px; }
+.foot__line { color: var(--muted); font-size: 12.5px; }
+.foot__links { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+.foot__links a { color: var(--accent2); text-decoration: none; }
+.foot__links a:hover { text-decoration: underline; }
+.foot__sep { color: var(--muted); opacity: .5; }
+.foot__brand { opacity: .82; transition: opacity .15s; }
+.foot__brand:hover { opacity: 1; }
+.foot__brand img { display: block; width: 90px; height: auto; }

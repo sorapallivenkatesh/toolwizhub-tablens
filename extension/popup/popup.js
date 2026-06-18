@@ -20,6 +20,12 @@ function tint(s) {
 
 $("opts").addEventListener("click", () => chrome.runtime.openOptionsPage());
 
+// open the full stats dashboard — from the streak card or the link
+const openStats = () => chrome.tabs.create({ url: chrome.runtime.getURL("stats/stats.html") });
+$("streakCard").addEventListener("click", openStats);
+$("streakCard").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openStats(); } });
+$("allstats").addEventListener("click", (e) => { e.preventDefault(); openStats(); });
+
 function renderSites(usage, today) {
   const day = usage[today] || {};
   const rows = Object.entries(day).sort((a, b) => b[1] - a[1]).slice(0, 6);

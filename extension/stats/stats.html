@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TabLens — Stats</title>
+  <link rel="stylesheet" href="stats.css" />
+</head>
+<body>
+  <header class="top">
+    <img class="top__logo" src="../icons/48.png" width="30" height="30" alt="" />
+    <h1>TabLens <span>stats</span></h1>
+    <button id="opts" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+  </header>
+
+  <main class="wrap">
+    <!-- streak summary -->
+    <section class="summary">
+      <div class="kpi">
+        <span class="kpi__ic">🔥</span>
+        <div class="kpi__num" id="cur">–</div>
+        <div class="kpi__lbl">current streak</div>
+      </div>
+      <div class="kpi">
+        <span class="kpi__ic">🏆</span>
+        <div class="kpi__num" id="best">–</div>
+        <div class="kpi__lbl">longest streak</div>
+      </div>
+      <div class="kpi">
+        <span class="kpi__ic">📅</span>
+        <div class="kpi__num" id="active">–</div>
+        <div class="kpi__lbl">active days</div>
+      </div>
+      <div class="kpi">
+        <span class="kpi__ic">⏳</span>
+        <div class="kpi__num" id="total">–</div>
+        <div class="kpi__lbl">total time</div>
+      </div>
+    </section>
+
+    <!-- calendar heatmap -->
+    <section class="card">
+      <div class="card__head">
+        <h2>Activity</h2>
+        <div class="legend">
+          <span>Less</span>
+          <i class="lv lv0"></i><i class="lv lv1"></i><i class="lv lv2"></i><i class="lv lv3"></i><i class="lv lv4"></i>
+          <span>More</span>
+        </div>
+      </div>
+      <div class="heatwrap">
+        <div class="heatdays"><span>Mon</span><span>Wed</span><span>Fri</span></div>
+        <div class="heat" id="heat"></div>
+      </div>
+    </section>
+
+    <!-- minutes per day -->
+    <section class="card">
+      <div class="card__head"><h2>Time per day</h2><span class="muted">last 30 days</span></div>
+      <div class="bars" id="bars"></div>
+    </section>
+
+    <!-- top sites with range toggle -->
+    <section class="card">
+      <div class="card__head">
+        <h2>Top sites</h2>
+        <div class="seg" id="range">
+          <button data-days="7" class="on">7d</button>
+          <button data-days="30">30d</button>
+          <button data-days="0">All</button>
+        </div>
+      </div>
+      <ul class="sites" id="sites"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="foot__status"><span class="foot__dot"></span> Runs 100% locally — nothing leaves your browser</span>
+    <a class="foot__logo" href="https://toolwizhub.com" target="_blank" rel="noopener" title="ToolWizHub">
+      <img src="../assets/toolwizhub-logo.webp" alt="ToolWizHub" width="80" />
+    </a>
+  </footer>
+
+  <script type="module" src="stats.js"></script>
+</body>
+</html>

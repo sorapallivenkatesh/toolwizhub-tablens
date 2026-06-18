@@ -35,6 +35,14 @@ body {
   border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
 }
 .stat::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--grad); opacity: .8; }
+.stat--link { cursor: pointer; transition: border-color .15s, transform .15s; }
+.stat--link:hover { border-color: var(--accent); transform: translateY(-1px); }
+.stat--link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.allstats { display: block; text-align: center; margin: 0 0 12px; padding: 9px; border-radius: 10px;
+  background: var(--panel); border: 1px solid var(--line); color: var(--accent2);
+  text-decoration: none; font-size: 12px; font-weight: 600; transition: .15s; }
+.allstats:hover { border-color: var(--line2); background: var(--panel2); }
 .stat__ic { font-size: 15px; opacity: .9; }
 .stat__num {
   font-size: 30px; font-weight: 800; line-height: 1.1; margin-top: 2px;
