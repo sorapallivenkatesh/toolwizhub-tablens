@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TabLens — Page Companion",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Your lens on every tab — time per site, scroll memory, sticky notes, page-change alerts, and a daily streak. Runs 100% locally, nothing uploaded.",
   "permissions": [
     "storage",
