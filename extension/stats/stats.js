@@ -33,6 +33,16 @@ function level(secs) {
   return 4;                        // >3h
 }
 
+// consecutive days (ending today, grace for an empty today) this domain was visited
+function domainStreak(usage, domain) {
+  const has = (k) => usage[k] && usage[k][domain] > 0;
+  const d = new Date(); d.setHours(0, 0, 0, 0);
+  if (!has(dayKey(d))) d.setDate(d.getDate() - 1);
+  let n = 0;
+  while (has(dayKey(d))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+
 $("opts").addEventListener("click", () => chrome.runtime.openOptionsPage());
 
 function renderSummary(usage, stats) {
@@ -82,6 +92,7 @@ function renderBars(usage) {
   });
 }
 
+const STREAK_DAYS = 1;
 const PAGE = 25;
 let siteRows = [], sitePage = 0, siteMax = 1; // bar width uses the global #1, so pages stay comparable
 
@@ -90,8 +101,9 @@ function loadSites(usage, days) {
   const keys = days === 0 ? Object.keys(usage) : lastDays(days);
   const agg = {};
   for (const k of keys) { const o = usage[k]; if (!o) continue; for (const dom in o) agg[dom] = (agg[dom] || 0) + o[dom]; }
-  siteRows = Object.entries(agg).sort((a, b) => b[1] - a[1]);
-  siteMax = siteRows.length ? siteRows[0][1] : 1;
+  siteRows = Object.entries(agg).sort((a, b) => b[1] - a[1])
+    .map(([dom, secs]) => ({ dom, secs, streak: domainStreak(usage, dom) }));
+  siteMax = siteRows.length ? siteRows[0].secs : 1;
   sitePage = 0;
   drawSites();
 }
@@ -111,15 +123,36 @@ function drawSites() {
   sitePage = Math.max(0, Math.min(sitePage, pages - 1));
   const start = sitePage * PAGE;
 
-  for (const [dom, secs] of siteRows.slice(start, start + PAGE)) {
+  for (const { dom, secs, streak } of siteRows.slice(start, start + PAGE)) {
     const li = document.createElement("li"); li.className = "site";
     const av = document.createElement("span"); av.className = "site__av"; av.style.background = tint(dom); av.textContent = dom[0] || "?";
+
+    const name = document.createElement("span"); name.className = "site__name";
     const d = document.createElement("span"); d.className = "site__d"; d.textContent = dom;
+    name.append(d);
+    if (streak >= STREAK_DAYS) {
+      const badge = document.createElement("span"); badge.className = "site__streak";
+      badge.textContent = `🔥 ${streak}`;
+      badge.title = `${streak}-day visit streak on ${dom}`;
+      if (streak >= 10) {
+        // past tier 7: every 5-day milestone (10,15,20,25…) gets its own vivid colour,
+        // seeded by the milestone so it's varied but stable across renders
+        const milestone = Math.floor(streak / 5) * 5;
+        const hue = (milestone * 47) % 360;
+        badge.style.color = `hsl(${hue} 85% 72%)`;
+        badge.style.background = `hsla(${hue}, 85%, 60%, .14)`;
+        badge.style.borderColor = `hsla(${hue}, 85%, 60%, .45)`;
+      } else {
+        badge.dataset.tier = Math.min(streak, 7); // 1..7 fixed scale (8–9 keep tier 7)
+      }
+      name.append(badge);
+    }
+
     const track = document.createElement("span"); track.className = "site__track";
     const bar = document.createElement("span"); bar.className = "site__bar"; bar.style.width = `${Math.max(6, (secs / siteMax) * 100)}%`;
     track.append(bar);
     const t = document.createElement("span"); t.className = "site__t"; t.textContent = fmt(secs);
-    li.append(av, d, track, t);
+    li.append(av, name, track, t);
     ul.append(li);
   }
 
