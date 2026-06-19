@@ -82,29 +82,54 @@ function renderBars(usage) {
   });
 }
 
-function renderSites(usage, days) {
+const PAGE = 25;
+let siteRows = [], sitePage = 0, siteMax = 1; // bar width uses the global #1, so pages stay comparable
+
+// aggregate the selected range into a sorted list, then show page 0
+function loadSites(usage, days) {
   const keys = days === 0 ? Object.keys(usage) : lastDays(days);
   const agg = {};
   for (const k of keys) { const o = usage[k]; if (!o) continue; for (const dom in o) agg[dom] = (agg[dom] || 0) + o[dom]; }
-  const rows = Object.entries(agg).sort((a, b) => b[1] - a[1]).slice(0, 15);
+  siteRows = Object.entries(agg).sort((a, b) => b[1] - a[1]);
+  siteMax = siteRows.length ? siteRows[0][1] : 1;
+  sitePage = 0;
+  drawSites();
+}
 
+function drawSites() {
   const ul = $("sites");
   ul.replaceChildren();
-  if (!rows.length) {
+  const pager = $("pager");
+
+  if (!siteRows.length) {
     const li = document.createElement("li"); li.className = "empty";
-    li.textContent = "No browsing in this range yet."; ul.append(li); return;
+    li.textContent = "No browsing in this range yet."; ul.append(li);
+    pager.hidden = true; return;
   }
-  const max = rows[0][1] || 1;
-  for (const [dom, secs] of rows) {
+
+  const pages = Math.ceil(siteRows.length / PAGE);
+  sitePage = Math.max(0, Math.min(sitePage, pages - 1));
+  const start = sitePage * PAGE;
+
+  for (const [dom, secs] of siteRows.slice(start, start + PAGE)) {
     const li = document.createElement("li"); li.className = "site";
     const av = document.createElement("span"); av.className = "site__av"; av.style.background = tint(dom); av.textContent = dom[0] || "?";
     const d = document.createElement("span"); d.className = "site__d"; d.textContent = dom;
     const track = document.createElement("span"); track.className = "site__track";
-    const bar = document.createElement("span"); bar.className = "site__bar"; bar.style.width = `${Math.max(6, (secs / max) * 100)}%`;
+    const bar = document.createElement("span"); bar.className = "site__bar"; bar.style.width = `${Math.max(6, (secs / siteMax) * 100)}%`;
     track.append(bar);
     const t = document.createElement("span"); t.className = "site__t"; t.textContent = fmt(secs);
     li.append(av, d, track, t);
     ul.append(li);
+  }
+
+  if (siteRows.length > PAGE) {
+    pager.hidden = false;
+    $("pageinfo").textContent = `${start + 1}–${Math.min(start + PAGE, siteRows.length)} of ${siteRows.length}`;
+    $("prev").disabled = sitePage === 0;
+    $("next").disabled = sitePage >= pages - 1;
+  } else {
+    pager.hidden = true;
   }
 }
 
@@ -114,13 +139,14 @@ function renderSites(usage, days) {
   renderSummary(usage, stats);
   renderHeat(usage);
   renderBars(usage);
-  renderSites(usage, 7);
+  loadSites(usage, 7);
 
-  const seg = $("range");
-  seg.addEventListener("click", (e) => {
+  $("range").addEventListener("click", (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
-    [...seg.children].forEach((b) => b.classList.toggle("on", b === btn));
-    renderSites(usage, +btn.dataset.days);
+    [...$("range").children].forEach((b) => b.classList.toggle("on", b === btn));
+    loadSites(usage, +btn.dataset.days);
   });
+  $("prev").addEventListener("click", () => { sitePage--; drawSites(); });
+  $("next").addEventListener("click", () => { sitePage++; drawSites(); });
 })();

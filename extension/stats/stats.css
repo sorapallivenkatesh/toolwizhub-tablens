@@ -72,6 +72,13 @@ body {
 .site__t { flex: none; min-width: 70px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
 .empty { color: var(--faint); font-style: italic; }
 
+/* pagination */
+.pager { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; }
+.pager__btn { background: var(--panel2); border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 7px 14px; font: 600 12px/1 inherit; cursor: pointer; transition: border-color .15s; }
+.pager__btn:hover:not(:disabled) { border-color: var(--accent); }
+.pager__btn:disabled { opacity: .4; cursor: default; }
+.pager__info { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
 /* footer */
 .foot { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px; border-top: 1px solid var(--line); }
 .foot__status { display: flex; align-items: center; gap: 7px; color: var(--faint); font-size: 11px; }
