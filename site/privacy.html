@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — TabLens | ToolWizHub</title>
+  <meta name="description" content="TabLens runs 100% in your browser. It collects nothing, sends nothing, and has no servers. Here's exactly what it accesses and why." />
+  <meta name="theme-color" content="#07070d" />
+  <link rel="canonical" href="https://tablens.toolwizhub.com/privacy.html" />
+  <meta property="og:title" content="Privacy Policy — TabLens" />
+  <meta property="og:description" content="TabLens runs 100% locally — collects nothing, sends nothing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tablens.toolwizhub.com/privacy.html" />
+  <link rel="icon" type="image/webp" href="assets/favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>try { var t = localStorage.getItem("tablens:theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+  <header class="appbar">
+    <a class="brand" href="/" aria-label="ToolWizHub TabLens">
+      <img class="brand__mark" src="assets/logo-icon.webp" alt="ToolWizHub" width="42" height="42" />
+      <span class="brand__text"><strong>ToolWizHub</strong><span>TABLENS</span></span>
+    </a>
+    <nav class="appbar__links"><a href="/">← TabLens</a><button class="theme-toggle" id="theme" aria-label="Toggle light/dark theme" title="Toggle theme">☾</button></nav>
+  </header>
+
+  <main class="legal">
+    <h1>Privacy Policy</h1>
+    <p class="legal__date">TabLens browser extension · Last updated 19 June 2026</p>
+
+    <p class="tldr"><strong>The short version:</strong> TabLens runs <strong>100% in your browser</strong>. It does not collect, store remotely, sell, or transmit any of your data. There are no accounts, no analytics, and no servers that receive your browsing data.</p>
+
+    <h2>What TabLens does</h2>
+    <p>TabLens is a bundle of five tab quality-of-life tools, each an optional toggle: a site usage timer, a daily streak &amp; stats dashboard, scroll-position memory, sticky notes, and a page-change monitor. All processing happens locally on your device.</p>
+
+    <h2>What it accesses — and why</h2>
+    <ul>
+      <li><strong>The active tab's URL</strong> — so the usage timer can attribute time to the correct site (domain only). It does not read page content for the timer.</li>
+      <li><strong>Idle state</strong> — to pause the timer when you step away, so only active time is counted.</li>
+      <li><strong>Sites you choose</strong> (<code>&lt;all_urls&gt;</code> host access, <em>optional</em>) — requested only when you enable an on-page tool (scroll memory, sticky notes, or page diff monitor), so it can run on the pages you visit. If you never enable those, this access is never requested.</li>
+    </ul>
+
+    <h2>What it stores</h2>
+    <p>Only on your device, via the browser's storage APIs:</p>
+    <ul>
+      <li>Your <strong>usage history</strong> (active seconds per site, per day) and the streaks computed from it.</li>
+      <li>Your <strong>sticky notes</strong> and <strong>saved scroll positions</strong>, per page.</li>
+      <li>The list of <strong>pages you've chosen to watch</strong> for changes, and their last-seen content fingerprint.</li>
+      <li>Your <strong>settings</strong> — which features are on, and your theme choice.</li>
+    </ul>
+    <p>None of this is ever sent off your device.</p>
+
+    <h2>What it does NOT do</h2>
+    <ul>
+      <li>No data collection, no transmission to any server we run, no selling or sharing of data.</li>
+      <li>No accounts, sign-in, tracking, advertising, or third-party analytics.</li>
+      <li>No reading of passwords, form inputs, or page content beyond what a feature you enabled needs (sticky-note text is what you type; scroll memory stores only a scroll offset).</li>
+    </ul>
+
+    <h2>Page diff monitor</h2>
+    <p>If you enable the page diff monitor and add pages to watch, TabLens periodically fetches <em>those specific URLs</em> from your browser to detect whether their content changed. This happens locally; the fetched content is reduced to a fingerprint and compared on your device. Nothing is sent to us.</p>
+
+    <h2>Permissions summary</h2>
+    <ul>
+      <li><code>tabs</code> — read the active tab's URL for timer attribution and open the stats page.</li>
+      <li><code>storage</code> — save your history, streaks, notes, scroll positions, watched pages, and settings on-device.</li>
+      <li><code>idle</code> — pause the timer when you're away.</li>
+      <li><code>alarms</code> — periodically persist the active session and run page-change checks.</li>
+      <li><code>scripting</code> — inject the on-page tools (scroll memory, sticky notes) only when you enable them.</li>
+      <li><code>&lt;all_urls&gt;</code> (optional host access) — run the on-page tools on the sites you choose; requested only when enabled.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>TabLens is a general-purpose productivity tool and is not directed at children. It collects no personal data from anyone.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the updated version will be posted here with a new date.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Open an issue at <a href="https://github.com/sorapallivenkatesh/toolwizhub-tablens" target="_blank" rel="noopener">github.com/sorapallivenkatesh/toolwizhub-tablens</a>.</p>
+  </main>
+
+  <footer class="app-footer">
+    <a class="app-footer__brand" href="https://toolwizhub.com" target="_blank" rel="noopener">
+      <span>More free tools at</span>
+      <img src="assets/logo-horizontal.webp" alt="ToolWizHub" />
+    </a>
+    <span class="app-footer__copy">© <span id="year">2026</span> ToolWizHub · Privacy-first, no tracking.</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

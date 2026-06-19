@@ -14,3 +14,5 @@ CLAUDE.md
 *.zip
 dist/
 web-ext-artifacts/
+
+store/*
