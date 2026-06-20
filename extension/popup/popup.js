@@ -23,6 +23,21 @@ function tint(s) {
   return `hsl(${h} 52% 46%)`;
 }
 
+// Chrome's locally-cached favicon (no network); letter tile if none.
+function avatar(domain) {
+  const av = document.createElement("span");
+  av.className = "site__av";
+  av.style.background = tint(domain);
+  let url = "";
+  try { url = chrome.runtime.getURL(`_favicon/?pageUrl=${encodeURIComponent("https://" + domain)}&size=32`); } catch {}
+  if (url) {
+    const img = document.createElement("img"); img.src = url; img.alt = ""; img.loading = "lazy";
+    img.addEventListener("error", () => { img.remove(); av.textContent = domain[0] || "?"; });
+    av.appendChild(img);
+  } else av.textContent = domain[0] || "?";
+  return av;
+}
+
 $("opts").addEventListener("click", () => chrome.runtime.openOptionsPage());
 
 // open the full stats dashboard — from the streak card or the link
@@ -48,10 +63,7 @@ function renderSites(usage, today) {
     const li = document.createElement("li");
     li.className = "site";
 
-    const av = document.createElement("span");
-    av.className = "site__av";
-    av.style.background = tint(domain);
-    av.textContent = domain[0] || "?";
+    const av = avatar(domain);
 
     const d = document.createElement("span");
     d.className = "site__d"; d.textContent = domain;

@@ -64,8 +64,9 @@ body {
 .site__av {
   flex: none; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center;
   font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); overflow: hidden;
 }
+.site__av img { width: 17px; height: 17px; border-radius: 3px; display: block; }
 .site__d { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text2); }
 .site__track { flex: none; width: 84px; height: 7px; border-radius: 4px; background: var(--panel2); overflow: hidden; }
 .site__bar { display: block; height: 100%; border-radius: 4px; background: var(--grad); }

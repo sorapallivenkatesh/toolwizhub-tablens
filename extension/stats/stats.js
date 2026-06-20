@@ -15,6 +15,22 @@ const fmt = (s) => { const m = Math.round(s / 60); return m < 60 ? `${m}m` : `${
 // deterministic avatar tint per domain
 function tint(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return `hsl(${h} 52% 46%)`; }
 
+// Chrome's locally-cached favicon (no network); falls back to a colour + letter tile.
+function faviconUrl(domain) {
+  try { return chrome.runtime.getURL(`_favicon/?pageUrl=${encodeURIComponent("https://" + domain)}&size=32`); }
+  catch { return ""; }
+}
+function avatar(domain) {
+  const av = document.createElement("span"); av.className = "site__av"; av.style.background = tint(domain);
+  const url = faviconUrl(domain);
+  if (url) {
+    const img = document.createElement("img"); img.src = url; img.alt = ""; img.loading = "lazy";
+    img.addEventListener("error", () => { img.remove(); av.textContent = domain[0] || "?"; });
+    av.appendChild(img);
+  } else av.textContent = domain[0] || "?";
+  return av;
+}
+
 const dayTotal = (usage, day) => { const o = usage[day]; return o ? Object.values(o).reduce((a, b) => a + b, 0) : 0; };
 
 // last n day-keys ending today, chronological
@@ -125,7 +141,7 @@ function drawSites() {
 
   for (const { dom, secs, streak } of siteRows.slice(start, start + PAGE)) {
     const li = document.createElement("li"); li.className = "site";
-    const av = document.createElement("span"); av.className = "site__av"; av.style.background = tint(dom); av.textContent = dom[0] || "?";
+    const av = avatar(dom);
 
     const name = document.createElement("span"); name.className = "site__name";
     const d = document.createElement("span"); d.className = "site__d"; d.textContent = dom;
