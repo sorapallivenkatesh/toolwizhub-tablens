@@ -56,14 +56,15 @@
     launcher.textContent = "+";
     launcher.title = "TabLens — add a sticky note to this page";
     Object.assign(launcher.style, {
-      position: "fixed", right: "18px", bottom: "18px", zIndex: 2147483647,
-      width: "48px", height: "48px", borderRadius: "16px", border: "none", cursor: "pointer",
+      position: "fixed", right: "14px", bottom: "14px", zIndex: 2147483647,
+      width: "30px", height: "30px", borderRadius: "10px", border: "none", cursor: "pointer",
       background: "linear-gradient(135deg,#6366f1,#22d3ee)", color: "#fff",
-      fontSize: "27px", fontWeight: "300", lineHeight: "46px",
-      boxShadow: "0 6px 18px rgba(99,102,241,.45)", transition: "transform .15s ease",
+      fontSize: "17px", fontWeight: "300", lineHeight: "28px", padding: "0",
+      boxShadow: "0 3px 10px rgba(99,102,241,.35)", opacity: ".4",
+      transition: "opacity .15s ease, transform .15s ease",
     });
-    launcher.addEventListener("mouseenter", () => { launcher.style.transform = "translateY(-2px) scale(1.06)"; });
-    launcher.addEventListener("mouseleave", () => { launcher.style.transform = ""; });
+    launcher.addEventListener("mouseenter", () => { launcher.style.opacity = "1"; launcher.style.transform = "scale(1.08)"; });
+    launcher.addEventListener("mouseleave", () => { launcher.style.opacity = ".4"; launcher.style.transform = ""; });
     document.documentElement.appendChild(launcher);
 
     function render(n) {
