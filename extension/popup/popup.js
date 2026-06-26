@@ -110,3 +110,16 @@ chrome.runtime.sendMessage({ type: "tablens:dashboard" }, (res) => {
   renderSites(res.usage, res.today);
 });
 renderChanges();
+
+// ---- gentle "rate it" nudge: after a few opens, once, dismissible -----------
+const RATE_KEY = "tablens:rate";
+const markRated = () => chrome.storage.local.set({ [RATE_KEY]: { opens: 99, done: true } });
+(async () => {
+  const st = (await chrome.storage.local.get(RATE_KEY))[RATE_KEY] || { opens: 0, done: false };
+  if (st.done) return;
+  st.opens += 1;
+  await chrome.storage.local.set({ [RATE_KEY]: st });
+  if (st.opens >= 3) $("rate").hidden = false;
+})();
+$("rate-x").addEventListener("click", () => { markRated(); $("rate").hidden = true; });
+$("rate-link").addEventListener("click", markRated); // they're heading to the store — don't ask again

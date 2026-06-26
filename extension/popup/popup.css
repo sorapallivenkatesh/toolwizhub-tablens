@@ -43,6 +43,13 @@ body {
   background: var(--panel); border: 1px solid var(--line); color: var(--accent2);
   text-decoration: none; font-size: 12px; font-weight: 600; transition: .15s; }
 .allstats:hover { border-color: var(--line2); background: var(--panel2); }
+
+.rate { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; padding: 9px 11px; border-radius: 10px;
+  background: linear-gradient(90deg, rgba(99,102,241,.14), rgba(34,211,238,.10)); border: 1px solid var(--line2); }
+.rate__txt { flex: 1; font-size: 12.5px; color: var(--text2); }
+.rate__cta { color: #06070f; background: var(--grad); border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 700; text-decoration: none; }
+.rate__x { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 12px; padding: 2px; }
+.rate__x:hover { color: var(--text2); }
 .stat__ic { font-size: 15px; opacity: .9; }
 .stat__num {
   font-size: 30px; font-weight: 800; line-height: 1.1; margin-top: 2px;
